@@ -4,6 +4,7 @@ import DetailsPage from '~/components/DetailsPage';
 import homeStyles from '~/styles/home.css';
 import { useState } from 'react';
 import { useActionData } from '@remix-run/react';
+import { Link } from '@remix-run/react';
 
 
 export default function Index() {
@@ -38,7 +39,7 @@ export default function Index() {
     setTime(t);
     setElevation(e);
 
-    setChalPoints(calculateChallengePoints(sport, type, {distance: d, time: t, elevation: e}));
+    setChalPoints(calculateChallengePoints(sport, type, { distance: d, time: t, elevation: e }));
 
     setActivityPhase(3);
   }
@@ -50,7 +51,13 @@ export default function Index() {
         {activityPhase == 0 && <SportSelection sportChanger={chooseSport} />}
         {activityPhase == 1 && <OutdoorIndoor typeChanger={chooseType} />}
         {activityPhase == 2 && <DetailsPage detailsUpdater={setDetails} />}
-        {activityPhase == 3 && <h1>Challenge points: {chalPoints.toFixed(2)}</h1>}
+        {activityPhase == 3 &&
+          <>
+            <h1>Challenge points: {chalPoints.toFixed(2)}</h1>
+            <button onClick={() => window.location.reload(false)}>Regresar!</button>
+          </>
+
+        }
       </div>
 
     </main>
@@ -60,10 +67,10 @@ export default function Index() {
 const calculateChallengePoints = (sport, type, activityData) => {
   var multiplier = 1.0;
   var elevationMultiplier = 0.01;
-  var isOutdoor = type === "outdoor";
+  var isOutdoor = type == "outdoor";
 
   if (sport === "bike") {
-    multiplier = 0.33;
+    multiplier = 1 / 3;
     elevationMultiplier = 0.005;
   }
   else if (sport === "swim") {
@@ -74,7 +81,7 @@ const calculateChallengePoints = (sport, type, activityData) => {
 
   console.log(activityData.distance * multiplier + activityData.elevation * elevationMultiplier);
 
-  return activityData.distance * multiplier + activityData.elevation * elevationMultiplier;
+  return (activityData.distance * multiplier) + (activityData.elevation * elevationMultiplier);
 
 }
 
