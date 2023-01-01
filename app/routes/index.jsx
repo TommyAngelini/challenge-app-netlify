@@ -50,7 +50,7 @@ export default function Index() {
         {activityPhase == 0 && <SportSelection sportChanger={chooseSport} />}
         {activityPhase == 1 && <OutdoorIndoor typeChanger={chooseType} />}
         {activityPhase == 2 && <DetailsPage detailsUpdater={setDetails} />}
-        {activityPhase == 3 && <h1>Challenge points: {chalPoints}</h1>}
+        {activityPhase == 3 && <h1>Challenge points: {chalPoints.toFixed(2)}</h1>}
       </div>
 
     </main>
