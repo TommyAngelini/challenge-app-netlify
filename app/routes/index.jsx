@@ -67,7 +67,7 @@ export default function Index() {
 const calculateChallengePoints = (sport, type, activityData) => {
   var multiplier = 1.0;
   var elevationMultiplier = 0.01;
-  var isOutdoor = type == "outdoor";
+  var isOutdoor = type == "Outdoor";
 
   if (sport === "bike") {
     multiplier = 1 / 3;
