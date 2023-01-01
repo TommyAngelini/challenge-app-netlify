@@ -48,6 +48,7 @@
     flex-basis: 100%;
     min-height: 56px;
     max-width: 320px;
+    font-size: 17px;
 }
 
 .row {
