@@ -1,0 +1,79 @@
+.sport-selection-container {
+    margin: 3em 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.details-container {
+    margin: 3em 1em;
+}
+
+.sport-button {
+    margin: 0.75em;
+}
+
+.type-button {
+    border-radius: 4px;
+    height: 56px;
+    width: 100%;
+    margin: 1em;
+    background-color: #D9D9D9;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.input-title {
+    flex-basis: 100%;
+    left: 0;
+    position: fixed;
+    margin-left: 1.5em;
+
+}
+
+.input-measurement {
+    margin-left: 9px;
+    font-size: 18px;
+}
+
+.input-field {
+    flex-basis: 100%;
+    min-height: 56px;
+    max-width: 320px;
+}
+
+.row {
+    display: flex;
+    justify-content: left;
+    flex-basis: 100%;
+    align-items: center;
+}
+
+.details-title {
+    margin-bottom: 9px;
+}
+
+.form-actions {
+    margin-top: 5em;
+}
+
+.m1 {
+    margin: 5em 1em;
+}
+
+.reset-button {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
