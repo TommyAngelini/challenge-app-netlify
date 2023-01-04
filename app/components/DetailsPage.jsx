@@ -17,8 +17,8 @@ export default function DetailsPage(props) {
                         <h3 className="details-title">Distancia</h3>
                     </div>
                     <div className="row">
-                        <input className="input-field" onChange={(event) => setDistance(event.target.value)} type="number" min="0" step="0.01" id="distance" name="distance" required />
-                        <div className='input-measurement'><label htmlFor="distance">km</label></div>
+                        <input className="input-field" onChange={(event) => setDistance(props.sport == "swim" ? event.target.value / 1000 : event.target.value)} type="number" min="0" step="0.01" id="distance" name="distance" required />
+                        <div className='input-measurement'><label htmlFor="distance">{props.sport == "swim" ? "m" : "km"}</label></div>
                     </div>
 
                 </div>

@@ -21,7 +21,7 @@ const ResultCard = (props) => {
                 </div>
                 <div className="card-row">
                     <div className="card-title">Distancia:</div>
-                    <div className="card-value">{props.distance}km</div>
+                    <div className="card-value">{props.activity == "swim" ? props.distance * 1000 : props.distance} {props.activity == "swim" ? "m" : "km"}</div>
                     <div className="card-detail">(+{props.distanceSum.toFixed(2)})</div>
                 </div>
                 <div className="card-row">
