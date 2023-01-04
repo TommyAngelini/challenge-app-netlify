@@ -28,7 +28,7 @@ const ResultCard = (props) => {
                     props.activity != "swim" && props.type == "Outdoor" &&
                     <div className="card-row">
                         <div className="card-title">Elevación:</div>
-                        <div className="card-value">{props.elevation}m</div>
+                        <div className="card-value">{props.elevation=='' ? 0 : props.elevation}m</div>
                         <div className="card-detail">(+{props.elevationSum.toFixed(2)})</div>
                     </div>
                 }
