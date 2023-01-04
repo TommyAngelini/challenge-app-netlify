@@ -17,7 +17,7 @@ const ExportCard = (props) => {
         const secondLineRegex = /#.*/;
         const lastLineRegex = /Total.*/;
 
-        const sportRegex = { "run": runningRegex, "bike": cyclingRegex, cyclingRegex: swimmingRegex };
+        const sportRegex = { "run": runningRegex, "bike": cyclingRegex, "swim": swimmingRegex };
         const emojiRegex = { "run": "🏃‍♂️: ", "bike": "🚴🏽‍♂️: ", "swim": "🏊‍♂️: " };
         const typeCode = { "Outdoor": "o", "Indoor": "i" };
 
