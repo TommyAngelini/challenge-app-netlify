@@ -2,7 +2,7 @@ import { Form, useActionData, useTransition as useNavigation } from '@remix-run/
 import { useState } from 'react';
 import ConfirmLogo from "../../public/svg/confirm-button.svg";
 
-export default function DetailsPage({detailsUpdater}) {
+export default function DetailsPage(props) {
 
     const [distance, setDistance] = useState(0);
     const [time, setTime] = useState(0);
@@ -17,7 +17,7 @@ export default function DetailsPage({detailsUpdater}) {
                         <h3 className="details-title">Distancia</h3>
                     </div>
                     <div className="row">
-                        <input className="input-field" onChange={(event) => setDistance(event.target.value) } type="number" min="0" step="0.01" id="distance" name="distance" required />
+                        <input className="input-field" onChange={(event) => setDistance(event.target.value)} type="number" min="0" step="0.01" id="distance" name="distance" required />
                         <div className='input-measurement'><label htmlFor="distance">km</label></div>
                     </div>
 
@@ -28,25 +28,28 @@ export default function DetailsPage({detailsUpdater}) {
                         <h3 className="details-title">Tiempo</h3>
                     </div>
                     <div className="row">
-                        <input className="input-field" onChange={(event) => setTime(event.target.value) } type="number" min="0" step="0.01" id="time" name="time" required />
+                        <input className="input-field" onChange={(event) => setTime(event.target.value)} type="number" min="0" step="0.01" id="time" name="time" required />
                         <div className='input-measurement'><label htmlFor="time">min</label></div>
                     </div>
 
                 </div>
+                {
+                    props.type == "Outdoor" && props.sport != "swim" &&
+                    <div className='form-section'>
+                        <div className="row">
+                            <h3 className="details-title">Elevación</h3>
+                        </div>
+                        <div className="row">
+                            <input className="input-field" onChange={(event) => setElevation(event.target.value)} type="number" min="0" step="0.01" id="elevation" name="elevation" required />
+                            <div className='input-measurement'><label htmlFor="elevation">m</label></div>
+                        </div>
 
-                <div className='form-section'>
-                    <div className="row">
-                        <h3 className="details-title">Elevación</h3>
                     </div>
-                    <div className="row">
-                        <input className="input-field" onChange={(event) => setElevation(event.target.value) } type="number" min="0" step="0.01" id="elevation" name="elevation" required />
-                        <div className='input-measurement'><label htmlFor="elevation">m</label></div>
-                    </div>
+                }
 
-                </div>
 
                 <div className="form-actions">
-                    <img src={ConfirmLogo} alt="Confirm Logo" onClick={() => detailsUpdater(distance, time, elevation)} />
+                    <img src={ConfirmLogo} alt="Confirm Logo" onClick={() => props.detailsUpdater(distance, time, elevation)} />
                 </div>
             </Form>
         </div>

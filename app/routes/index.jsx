@@ -60,8 +60,8 @@ export default function Index() {
       <h1>{titles[activityPhase]}</h1>
       <div className='container'>
         {activityPhase == 0 && <SportSelection sportChanger={chooseSport} />}
-        {activityPhase == 1 && <OutdoorIndoor typeChanger={chooseType} />}
-        {activityPhase == 2 && <DetailsPage detailsUpdater={setDetails} />}
+        {activityPhase == 1 && <OutdoorIndoor typeChanger={chooseType} sport={sport} />}
+        {activityPhase == 2 && <DetailsPage detailsUpdater={setDetails} type={type} sport={sport} />}
         {activityPhase == 3 &&
           <ResultCard
             activity={sport}
