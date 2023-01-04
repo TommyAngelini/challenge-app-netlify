@@ -3,7 +3,7 @@ import "./activity-creation.css";
 const ResultCard = (props) => {
 
     const sportNames = { "run": "Corrida", "bike": "Bici", "swim": "Natación" };
-    console.log(props.distanceSum.toFixed(2));
+    const bonusPoints = (props.distance * (props.typeMultiplier - 1)) * props.distanceSum / props.distance;
 
     return (
         <>
@@ -17,7 +17,7 @@ const ResultCard = (props) => {
                 <div className="card-row">
                     <div className="card-title">Tipo:</div>
                     <div className="card-value">{props.type}</div>
-                    <div className="card-detail">(x{props.typeMultiplier})</div>
+                    <div className="card-detail">(+{bonusPoints.toFixed(2)})</div>
                 </div>
                 <div className="card-row">
                     <div className="card-title">Distancia:</div>
