@@ -42,7 +42,7 @@ export default function Index() {
     setElevation(e);
 
     // set distance sum
-    if(sport == "run") setDistanceSum(d);
+    if(sport == "run") setDistanceSum(parseFloat(d));
     else if(sport == "bike") setDistanceSum(d / 3);
     else setDistanceSum(d * 5);
 

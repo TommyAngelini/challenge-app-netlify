@@ -3,6 +3,7 @@ import "./activity-creation.css";
 const ResultCard = (props) => {
 
     const sportNames = { "run": "Corrida", "bike": "Bici", "swim": "Natación" };
+    console.log(props.distanceSum.toFixed(2));
 
     return (
         <>
