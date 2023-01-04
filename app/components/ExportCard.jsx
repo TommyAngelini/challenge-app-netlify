@@ -5,9 +5,9 @@ const ExportCard = (props) => {
 
     const [messageInput, setMessageInput] = useState(false);
     const [message, setMessage] = useState('');
+    const [copied, setCopied] = useState(false);
 
     const generateNewMessage = (text) => {
-        setMessageInput(true);
 
         const activityNumberRegex = /#(\d+)/;
         const cyclingRegex = /🚴🏽‍♂️: (\d+)/;
@@ -25,19 +25,9 @@ const ExportCard = (props) => {
         const prevActivityAmount = parseInt(text.match(sportRegex[props.activity])[0].match(/\d+/)[0]);
         const prevTotalAmount = parseInt(text.match(totalRegex)[0].match(/\d+/)[0]);
 
-        console.log(activityNumber);
-        console.log(prevActivityAmount);
-        console.log(prevTotalAmount);
-
         const newActivityNumber = activityNumber + 1;
         const newActivityAmount = prevActivityAmount + props.challengePoints;
         const newTotalAmount = prevTotalAmount + props.challengePoints;
-
-        console.log("new values");
-
-        console.log(newActivityNumber);
-        console.log(newActivityAmount);
-        console.log(newTotalAmount);
 
         const newDescription = "#" + newActivityNumber + ", " + props.activity
             + " " + typeCode[props.type] + ", " + props.challengePoints.toFixed(2)
@@ -50,9 +40,14 @@ const ExportCard = (props) => {
         var updatedMessage = text.replace(secondLineRegex, newDescription);
         updatedMessage = updatedMessage.replace(sportRegex[props.activity], newActivityLine);
         updatedMessage = updatedMessage.replace(lastLineRegex, newTotalLine);
-        console.log(updatedMessage);
         setMessage(updatedMessage);
-        navigator.clipboard.writeText(updatedMessage);
+
+    }
+
+    const copy = () => {
+        navigator.clipboard.writeText(message);
+        setMessageInput(true);
+        setCopied(true);
     }
 
     return (
@@ -66,6 +61,11 @@ const ExportCard = (props) => {
                         <textarea rows="8" className="input-field" onChange={(event) => generateNewMessage(event.target.value)} required />
                     </div>
                 </div>
+                {!messageInput &&
+                    <div className="flex">
+                        <div className="back-button" onClick={() => copy()}>Copiar</div>
+                    </div>
+                }
                 {messageInput &&
                     <>
                         <div className="form-section">
@@ -75,16 +75,17 @@ const ExportCard = (props) => {
                             <div className="row">
                                 <textarea rows="8" className="input-field" readOnly value={message} required />
                             </div>
-                            <div className="row">
-                                <h2>Nueva actividad copiada!</h2>
-                            </div>
+                            {copied &&
+                                <div className="row">
+                                    <h2>Nueva actividad copiada!</h2>
+                                </div>
+                            }
+
                         </div>
                         <div className="flex">
                             <div className="back-button" onClick={() => window.location.reload(false)}>Reiniciar</div>
                         </div>
                     </>
-
-
                 }
             </form>
 
