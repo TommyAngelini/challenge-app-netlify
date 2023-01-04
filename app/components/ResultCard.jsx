@@ -25,7 +25,7 @@ const ResultCard = (props) => {
                     <div className="card-detail">(+{props.distanceSum.toFixed(2)})</div>
                 </div>
                 {
-                    props.activity != "swim" && props.type == "Outoor" &&
+                    props.activity != "swim" && props.type == "Outdoor" &&
                     <div className="card-row">
                         <div className="card-title">Elevación:</div>
                         <div className="card-value">{props.elevation}m</div>
