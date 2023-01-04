@@ -28,7 +28,7 @@ const ResultCard = (props) => {
                     props.activity != "swim" && props.type == "Outdoor" &&
                     <div className="card-row">
                         <div className="card-title">Elevación:</div>
-                        <div className="card-value">{props.elevation=='' ? 0 : props.elevation}m</div>
+                        <div className="card-value">{props.elevation == '' ? 0 : props.elevation}m</div>
                         <div className="card-detail">(+{props.elevationSum.toFixed(2)})</div>
                     </div>
                 }
@@ -47,6 +47,7 @@ const ResultCard = (props) => {
             </div>
 
             <div className="flex">
+                <div className="back-button" onClick={() => props.export()}>Mandar Actividad</div>
                 <div className="back-button" onClick={() => window.location.reload(false)}>Reiniciar</div>
             </div>
 

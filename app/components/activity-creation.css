@@ -163,8 +163,8 @@
 }
 
 .back-button {
-    width: 40%;
-    margin: 2em;
+    width: 50%;
+    /* margin: 2em; */
     background-color: #306EFF;
     color: white;
     border-radius: 56px;
@@ -173,10 +173,16 @@
     height: 3em;
     justify-content: center;
     align-items: center;
+    margin: 0.25em 0;
+}
+
+.export-container {
+    margin: 0 1em;
 }
 
 .flex {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }

@@ -2,6 +2,7 @@ import SportSelection, { links as sportSelectionLinks } from '~/components/Sport
 import OutdoorIndoor from '~/components/OutdoorIndoor';
 import DetailsPage from '~/components/DetailsPage';
 import ResultCard from '~/components/ResultCard';
+import ExportCard from '~/components/ExportCard';
 import homeStyles from '~/styles/home.css';
 import { useState } from 'react';
 import { useActionData } from '@remix-run/react';
@@ -11,7 +12,7 @@ export default function Index() {
 
   const activityData = useActionData();
 
-  const titles = ["¿Qué deporte hiciste?", "¿Qué tipo de actividad fue?", "Ingrese los detalles de tu actividad", "¡Listo!"];
+  const titles = ["¿Qué deporte hiciste?", "¿Qué tipo de actividad fue?", "Ingrese los detalles de tu actividad", "¡Listo!", "Ingrese su ultima actividad de whatsapp"];
   const [sport, setSport] = useState("run");
   const [type, setType] = useState("outdoor");
   const [distance, setDistance] = useState(0);
@@ -42,19 +43,22 @@ export default function Index() {
     setElevation(e);
 
     // set distance sum
-    if(sport == "run") setDistanceSum(parseFloat(d));
-    else if(sport == "bike") setDistanceSum(d / 3);
+    if (sport == "run") setDistanceSum(parseFloat(d));
+    else if (sport == "bike") setDistanceSum(d / 3);
     else setDistanceSum(d * 5);
 
     // set elevation sum
-    if(sport == "run" && type == "Outdoor") setElevationSum(e * 0.01);
-    else if(sport == "bike" && type == "Outdoor") setElevationSum(e * 0.005);
+    if (sport == "run" && type == "Outdoor") setElevationSum(e * 0.01);
+    else if (sport == "bike" && type == "Outdoor") setElevationSum(e * 0.005);
 
     setChalPoints(calculateChallengePoints(sport, type, { distance: d, time: t, elevation: e }));
 
     setActivityPhase(3);
   }
 
+  const exportActivity = () => {
+    setActivityPhase(4);
+  }
   return (
     <main id="content">
       <h1>{titles[activityPhase]}</h1>
@@ -73,6 +77,16 @@ export default function Index() {
             elevation={elevation}
             time={time}
             challengePoints={chalPoints}
+            export={exportActivity}
+          />
+        }
+        {
+          activityPhase == 4 &&
+          <ExportCard
+            activity={sport}
+            type={type}
+            challengePoints={chalPoints}
+            time={time}
           />
         }
       </div>
