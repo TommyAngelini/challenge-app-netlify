@@ -78,3 +78,105 @@
     background-color: transparent;
     cursor: pointer;
 }
+
+.result-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    background: #D9D9D9;
+    color: #000;
+    border-radius: 12px;
+}
+
+.p1 {
+    padding: 1em;
+}
+
+.card-row {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: 400;
+    width: 33%;
+    display: flex;
+    justify-content: left;
+    margin-left: 20px;
+}
+
+.card-value {
+    font-size: 24px;
+    font-weight: 400;
+    width: 33%;
+    display: flex;
+    justify-content: left;
+    margin-left: 30px;
+}
+
+.card-detail {
+    font-size: 18px;
+    color: #787878;
+}
+
+.colored-border {
+    justify-content: center;
+    border-color: #1F78B4;
+    margin: 4px;
+}
+
+.border {
+    border-radius: 12px;
+    margin: 1em;
+    height: 200%;
+    overflow: hidden;
+    background: linear-gradient(to right, #1F78B4 20%, #1F78AA 40%, #1CB48D 50%, #1CB48D 55%, #1F78AA 70%, #1F78AA 100%);
+    background-size: 200% auto;
+    animation: shine 2s linear infinite;
+}
+
+/*Begin shimmer code*/
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+.challenge-points-number {
+    color: #226CB0;
+    font-weight: 700;
+    z-index: 1;
+}
+
+.challenge-points-text {
+    font-weight: 400;
+    z-index: 1;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.back-button {
+    width: 40%;
+    margin: 2em;
+    background-color: #306EFF;
+    color: white;
+    border-radius: 56px;
+    font-size: 20px;
+    display: flex;
+    height: 3em;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,10 +1,10 @@
 import SportSelection, { links as sportSelectionLinks } from '~/components/SportSelection';
 import OutdoorIndoor from '~/components/OutdoorIndoor';
 import DetailsPage from '~/components/DetailsPage';
+import ResultCard from '~/components/ResultCard';
 import homeStyles from '~/styles/home.css';
 import { useState } from 'react';
 import { useActionData } from '@remix-run/react';
-import { Link } from '@remix-run/react';
 
 
 export default function Index() {
@@ -18,6 +18,8 @@ export default function Index() {
   const [time, setTime] = useState(0);
   const [elevation, setElevation] = useState(0);
   const [chalPoints, setChalPoints] = useState(0);
+  const [distanceSum, setDistanceSum] = useState(0);
+  const [elevationSum, setElevationSum] = useState(0);
 
 
 
@@ -39,6 +41,15 @@ export default function Index() {
     setTime(t);
     setElevation(e);
 
+    // set distance sum
+    if(sport == "run") setDistanceSum(d);
+    else if(sport == "bike") setDistanceSum(d / 3);
+    else setDistanceSum(d * 5);
+
+    // set elevation sum
+    if(sport == "run" && type == "Outdoor") setElevationSum(e * 0.01);
+    else if(sport == "bike" && type == "Outdoor") setElevationSum(e * 0.005);
+
     setChalPoints(calculateChallengePoints(sport, type, { distance: d, time: t, elevation: e }));
 
     setActivityPhase(3);
@@ -52,11 +63,17 @@ export default function Index() {
         {activityPhase == 1 && <OutdoorIndoor typeChanger={chooseType} />}
         {activityPhase == 2 && <DetailsPage detailsUpdater={setDetails} />}
         {activityPhase == 3 &&
-          <>
-            <h1>Challenge points: {chalPoints.toFixed(2)}</h1>
-            <button onClick={() => window.location.reload(false)}>Regresar!</button>
-          </>
-
+          <ResultCard
+            activity={sport}
+            type={type}
+            typeMultiplier={type == "Outdoor" ? 1.2 : 1}
+            distance={distance}
+            distanceSum={distanceSum}
+            elevationSum={elevationSum}
+            elevation={elevation}
+            time={time}
+            challengePoints={chalPoints}
+          />
         }
       </div>
 
@@ -78,6 +95,7 @@ const calculateChallengePoints = (sport, type, activityData) => {
   }
 
   if (isOutdoor) multiplier *= 1.2;
+
 
   console.log(activityData.distance * multiplier + activityData.elevation * elevationMultiplier);
 
