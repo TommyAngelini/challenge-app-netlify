@@ -24,11 +24,15 @@ const ResultCard = (props) => {
                     <div className="card-value">{props.activity == "swim" ? props.distance * 1000 : props.distance} {props.activity == "swim" ? "m" : "km"}</div>
                     <div className="card-detail">(+{props.distanceSum.toFixed(2)})</div>
                 </div>
-                <div className="card-row">
-                    <div className="card-title">Elevación:</div>
-                    <div className="card-value">{props.elevation}m</div>
-                    <div className="card-detail">(+{props.elevationSum.toFixed(2)})</div>
-                </div>
+                {
+                    props.activity != "swim" && props.type == "Outoor" &&
+                    <div className="card-row">
+                        <div className="card-title">Elevación:</div>
+                        <div className="card-value">{props.elevation}m</div>
+                        <div className="card-detail">(+{props.elevationSum.toFixed(2)})</div>
+                    </div>
+                }
+
                 <div className="card-row">
                     <div className="card-title">Tiempo:</div>
                     <div className="card-value">{props.time} min</div>
