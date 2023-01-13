@@ -10,10 +10,14 @@ const ExportCard = (props) => {
     const generateNewMessage = (text) => {
 
         const activityNumberRegex = /#(\d+)/;
-        const cyclingRegex = /🚴🏽‍♂️: (\d+)/;
-        const runningRegex = /🏃‍♂️: (\d+)/;
-        const swimmingRegex = /🏊‍♂️: (\d+)/;
-        const totalRegex = /Total: (\d+)/;
+
+        /* NEED TO CHANGE */
+        const cyclingRegex = /🚴🏽‍♂️: (\d*\.)?\d+/;
+        const runningRegex = /🏃‍♂️: (\d*\.)?\d+/;
+        const swimmingRegex = /🏊‍♂️: (\d*\.)?\d+/;
+        const totalRegex = /Total: (\d*\.)?\d+/;
+        /* END NEED TO CHANGE */
+
         const secondLineRegex = /#.*/;
         const lastLineRegex = /Total.*/;
 
@@ -22,8 +26,15 @@ const ExportCard = (props) => {
         const typeCode = { "Outdoor": "o", "Indoor": "i" };
 
         const activityNumber = parseInt(text.match(activityNumberRegex)[0].match(/\d+/)[0]);
-        const prevActivityAmount = parseInt(text.match(sportRegex[props.activity])[0].match(/\d+/)[0]);
-        const prevTotalAmount = parseInt(text.match(totalRegex)[0].match(/\d+/)[0]);
+
+        /* NEED TO CHANGE */
+        const prevActivityAmount = parseFloat(text.match(sportRegex[props.activity])[0].match(/(\d*\.)?\d+/)[0]);
+        const prevTotalAmount = parseFloat(text.match(totalRegex)[0].match(/(\d*\.)?\d+/)[0]);
+        /* END NEED TO CHANGE */
+
+        console.log("prev activity amount: " + prevActivityAmount);
+        console.log("prev total amount: " + prevTotalAmount);
+
 
         const newActivityNumber = activityNumber + 1;
         const newActivityAmount = prevActivityAmount + props.challengePoints;
